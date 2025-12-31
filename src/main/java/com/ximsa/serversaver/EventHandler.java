@@ -29,7 +29,8 @@ public class EventHandler {
     public void onPlayerLogout(PlayerEvent.PlayerLoggedOutEvent event) {
         LOG.debug("onPlayerLogout");
         MinecraftServer server = MinecraftServer.getServer();
-        if (server != null && server.getCurrentPlayerCount() == 0) {
+        if (server.getCurrentPlayerCount() == 1) {
+            LOG.debug("{} is the last Player logging out, pausing", event.player.getDisplayName());
             setIdle();
         }
     }
