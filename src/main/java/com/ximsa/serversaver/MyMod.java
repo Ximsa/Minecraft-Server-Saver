@@ -10,13 +10,20 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 
-@Mod(modid = MyMod.MODID, version = Tags.VERSION, name = "MyMod", acceptedMinecraftVersions = "[1.7.10]")
+@Mod(
+    modid = MyMod.MODID,
+    version = Tags.VERSION,
+    name = "Server Saver",
+    acceptedMinecraftVersions = "[1.7.10]",
+    acceptableRemoteVersions = "*",
+    dependencies = "after:tickratechanger")
+
 public class MyMod {
 
-    public static final String MODID = "mymodid";
+    public static final String MODID = "serversaver";
     public static final Logger LOG = LogManager.getLogger(MODID);
 
-    @SidedProxy(clientSide = "com.myname.mymodid.ClientProxy", serverSide = "com.myname.mymodid.CommonProxy")
+    @SidedProxy(serverSide = "com.ximsa.serversaver.CommonProxy")
     public static CommonProxy proxy;
 
     @Mod.EventHandler

@@ -6,12 +6,25 @@ import net.minecraftforge.common.config.Configuration;
 
 public class Config {
 
-    public static String greeting = "Hello World";
+    public static float activeTickrate = 20.0f;
+    public static float idleTickrate = 1.0f;
 
     public static void synchronizeConfiguration(File configFile) {
         Configuration configuration = new Configuration(configFile);
-
-        greeting = configuration.getString("greeting", Configuration.CATEGORY_GENERAL, greeting, "How shall I greet?");
+        activeTickrate = configuration.getFloat(
+            "activeTickrate",
+            Configuration.CATEGORY_GENERAL,
+            activeTickrate,
+            0f,
+            1000f,
+            "Tickrate when at least 1 player is online");
+        idleTickrate = configuration.getFloat(
+            "idleTickrate",
+            Configuration.CATEGORY_GENERAL,
+            idleTickrate,
+            0f,
+            1000f,
+            "Tickrate when no player is online");
 
         if (configuration.hasChanged()) {
             configuration.save();
